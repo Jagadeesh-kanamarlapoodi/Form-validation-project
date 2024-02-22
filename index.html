@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validation Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+        <div class="form-container">
+            <h2 class="text-center mb-4">Form Validation</h2>
+            <form id="validationForm">
+                <div class="form-group">
+                    <!-- Full name input field -->
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <!-- email input field -->
+                    <label for="email">Email ID:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <!-- phone number input field -->
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                </div>
+                <div class="form-group">
+                    <!-- password input field -->
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <!-- confirm password input field  -->
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div>
+                <button type="reset" class="btn btn-danger">Reset</button>
+                <!-- submit button with onclick event to submit the form -->
+                <button type="button" class="btn btn-primary" onclick="validateForm()">Submit</button>
+                </div>
+                
+                
+            </form>
+        </div>
+
+    <script>
+        function validateForm() {
+            // Fetching input values
+            var fullName = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation conditions
+            if (fullName.length < 5) {
+                // if fullname length is lessthan 5 then it throw an alert message.
+                alert("Name must be at least 5 characters long");
+            } else if (email.indexOf('@') === -1) {
+                // if @ is missing in email it alert you to enter a correct email.
+                alert("Enter a valid email address");
+            } else if (phoneNumber.length !== 10 || phoneNumber === '123456789') {
+                // if phone number length doesn't equal to 0 or phone number = 123456789 in this type it give alert message to enter correct phone number.
+                alert("Enter a valid 10-digit phone number");
+            } else if (password === 'password' || password.length < 8 || password === fullName) {
+                // if password match with fullname it give alert message that password is not strong enough.
+                alert("Password is not strong enough");
+            } else if (password !== confirmPassword) {
+                // if password doesn't equal to confirm password it says password do not match.
+                alert("Passwords do not match");
+            } else {                
+                // If all validations pass, show success message, and reset the form
+                alert("Form submitted successfully");
+                document.getElementById('validationForm').reset();
+            }
+        }
+    </script>
+</body>
+
+</html>
